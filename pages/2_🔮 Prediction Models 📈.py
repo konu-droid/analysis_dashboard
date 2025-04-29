@@ -9,7 +9,9 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import AdaBoostRegressor
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+import xgboost as xgb
 import joblib # To save/load models (optional)
 import time
 import plotly.graph_objs as go
@@ -150,6 +152,21 @@ def train_model(df, target_variable, model_choice, test_size=0.2, random_state=4
         elif model_choice == 'Random Forest':
             # Use smaller n_estimators for faster training in demo
             model = RandomForestRegressor(n_estimators=50, random_state=random_state, n_jobs=-1, max_depth=15, min_samples_split=10)
+        elif model_choice == 'XGBoost':
+             # Basic XGBoost Regressor
+            model = xgb.XGBRegressor(objective='reg:squarederror', # Specify objective for regression
+                                     n_estimators=50,              # Fewer estimators for speed
+                                     learning_rate=0.1,
+                                     max_depth=7,
+                                     subsample=0.8,
+                                     colsample_bytree=0.8,
+                                     random_state=random_state,
+                                     n_jobs=-1)
+        elif model_choice == 'AdaBoost':
+            # AdaBoost with default base estimator (DecisionTreeRegressor)
+            model = AdaBoostRegressor(n_estimators=50,          # Fewer estimators for speed
+                                      learning_rate=0.1,
+                                      random_state=random_state)
         else:
             st.error("Invalid model choice selected.")
             return None, None, None, None
@@ -209,7 +226,7 @@ if raw_df is not None:
         st.write(list(processed_df.drop(TARGET_VARIABLE, axis=1).columns))
 
         # Model selection dropdown
-        model_options = ['Linear Regression', 'Random Forest']
+        model_options = ['Linear Regression', 'Random Forest', 'XGBoost', 'AdaBoost']
         selected_model = st.selectbox("Choose a model to train:", model_options)
 
         # Train button
