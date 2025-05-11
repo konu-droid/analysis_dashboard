@@ -29,6 +29,8 @@ Welcome to the data analysis dashboard made by KVS Mohan Vamsi (st20314789)
     * Once EDA is done, head over to the **`Prediction Models`** tab.
     * Here, you can select from various machine learning algorithms and train them on the processed data.
     * The goal is to build models capable of predicting different factors based on the learned patterns.
+    * Press the train model_name button to train and then press the predict button the bottom on the page to see the predicted target variable value (PM2.5)
+    * You can even toggle the input variable tot he model and predict to see how it effects the target varaible. 
     
 """)
 

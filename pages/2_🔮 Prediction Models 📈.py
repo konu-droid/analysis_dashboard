@@ -20,7 +20,7 @@ import plotly.graph_objs as go
 st.set_page_config(page_title="Prediction Models", layout="wide")
 st.title("🔮 Prediction Models 📈")
 st.markdown("""
-This page builds and evaluates machine learning models to predict air quality (e.g., PM2.5)
+This page builds and evaluates machine learning models to predict air quality (default PM2.5)
 based on meteorological data and other pollutants.
 """)
 
