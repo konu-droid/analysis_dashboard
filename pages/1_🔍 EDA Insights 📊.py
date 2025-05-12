@@ -19,7 +19,7 @@ It covers data loading, preprocessing, basic statistics, and various visualizati
 # --- Constants ---
 DATA_DIR = "Weather_Dataset" # Relative path to the dataset directory
 
-# --- Data Loading and Caching ---
+# --- Data Loading ---
 def load_and_merge_data(data_dir):
     """
     Loads all CSV files from the specified directory, merges them,
@@ -105,8 +105,7 @@ raw_df = load_and_merge_data(DATA_DIR)
 if raw_df is not None:
     st.success(f"Successfully loaded and merged data from {len(glob.glob(os.path.join(DATA_DIR, 'PRSA_Data_*.csv')))} stations.")
 
-    processed_df, missing_info_initial = preprocess_data(raw_df.copy()) # Use copy to avoid modifying cached raw_df
-
+    processed_df, missing_info_initial = preprocess_data(raw_df.copy()) 
     st.subheader("1. Data Overview & Preprocessing")
 
     # Display basic info

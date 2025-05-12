@@ -33,7 +33,7 @@ TARGET_VARIABLE = 'PM2.5' # The variable we want to predict
 if not os.path.exists(MODEL_DIR):
     os.makedirs(MODEL_DIR)
 
-# --- Data Loading and Caching (Copied from EDA page for standalone use) ---
+# --- Data Loading (Copied from EDA page for standalone use) ---
 def load_and_merge_data(data_dir):
     """
     Loads all CSV files from the specified directory, merges them,
